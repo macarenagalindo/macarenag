@@ -4,13 +4,11 @@ import {
   Column,
   PrimaryGeneratedColumn,
   CreateDateColumn,
-  ManyToOne,
 } from "typeorm";
-import { Author } from "./author.entity";
 
 @ObjectType()
 @Entity()
-export class User {
+export class Admin {
   @Field()
   @PrimaryGeneratedColumn()
   id!: number;
@@ -30,8 +28,4 @@ export class User {
   @Field()
   @CreateDateColumn({ type: "timestamp" })
   createdAt!: string;
-
-  @Field(() => Number, { nullable: true })
-  @Column({ type: Number, nullable: true })
-  loanedBooksQuantity!: number;
 }

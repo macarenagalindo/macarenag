@@ -26,4 +26,16 @@ export class Book {
   @Field()
   @CreateDateColumn({ type: "timestamp" })
   createdAt!: string;
+
+  @Field(() => Boolean, { nullable: true })
+  @Column({ type: Boolean, nullable: true })
+  isOnLoan!: boolean;
+
+  @Field(() => Number, { nullable: true })
+  @Column({ type: Number, nullable: true })
+  userId!: number;
+
+  @Field()
+  @Column({ nullable: true })
+  loanedAt!: Date;
 }
