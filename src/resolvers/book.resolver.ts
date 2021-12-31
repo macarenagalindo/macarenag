@@ -66,14 +66,12 @@ export class BookResolver {
   }
 
   @Mutation(() => Book)
-  @UseMiddleware(isAuth)
-  // @UseMiddleware(isAuthAdmin) VERLO DSP
+  @UseMiddleware(isAuthAdmin)
   async createBook(
     @Arg("input", () => BookInput) input: BookInput,
     @Ctx() context: IContext
   ) {
     try {
-      // console.log(context.payload);
       const author: Author | undefined = await this.authorRepository.findOne(
         input.author
       );
@@ -134,6 +132,7 @@ export class BookResolver {
   }
 
   @Mutation(() => Boolean)
+  @UseMiddleware(isAuthAdmin)
   async updateBookById(
     @Arg("bookId", () => BookIdInput) bookId: BookIdInput,
     @Arg("input", () => BookUpdateInput) input: BookUpdateInput
@@ -147,6 +146,7 @@ export class BookResolver {
   }
 
   @Mutation(() => Boolean)
+  @UseMiddleware(isAuthAdmin)
   async deleteBook(
     @Arg("bookId", () => BookIdInput) bookId: BookIdInput
   ): Promise<Boolean> {
